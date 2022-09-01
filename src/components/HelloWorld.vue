@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, watch, reactive, onMounted } from "vue";
+import cronstrue from "cronstrue";
 
 const datas = reactive({
-  start: '"At',
-  end: '"',
+  start: '"',
+  end: '."',
+  text: "",
   hour: "",
   min: "",
   mond: "",
@@ -33,11 +35,11 @@ const formatter = (text: string) => {
     datas.mond = l[2];
     datas.mon = l[3];
     datas.wkd = l[4];
-    datas.start = '"At';
-    datas.end = '"';
+    datas.start = '"';
+    datas.end = '."';
   } else {
-    datas.start = "";
-    datas.end = "";
+    datas.start = '"';
+    datas.end = '."';
   }
   return l.join(" ");
 };
@@ -76,6 +78,14 @@ const textChange = () => {};
 
 watch(crontext, (newValue, oldValue) => {
   formatter(newValue);
+
+  try {
+    datas.text = cronstrue.toString(crontext.value);
+    console.log(cronstrue.getFullDescription());
+    console.log(11);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 const change = (e) => {
@@ -99,19 +109,19 @@ const click = (e) => {
   console.log(e.target.value);
   console.log(document.getElementById("crontext").selectionStart);
   console.log(document.getElementById("crontext").selectionEnd);
-  console.log("dsada{0}111{1}".format("hhh", "ddd"));
 };
 
 onMounted(() => {
   setStringFormat();
+  datas.text = cronstrue.toString(crontext.value);
 });
-
 </script>
 
 <template>
   <div class="parser-text">
     <h1>
       {{ datas.start }}
+      <span id="text">{{ datas.text }}</span>
       <span id="hour">{{ text.hour }}</span>
       <span id="minute">{{ text.min }}</span>
       <span id="month-day">{{ text.mond }}</span>

@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "cron-converter": "^1.0.2",
+    "cronstrue": "^2.11.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@types/node": "^18.7.14",
     "@vitejs/plugin-vue": "^3.0.3",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
