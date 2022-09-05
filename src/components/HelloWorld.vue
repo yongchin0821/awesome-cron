@@ -3,17 +3,24 @@ import { ref, watch, reactive, onMounted } from "vue";
 import cronstrue from "cronstrue";
 
 const datas = reactive({
-  start: '"',
+  start: '"At ',
   end: '."',
-  text: "",
-  hour: "",
-  min: "",
-  mond: "",
-  mon: "",
-  wkd: "",
+  full: "",
+  textCount: 5,
+  toHighlight: null,
 });
 
-const text = reactive({
+type TparsedText = {
+  full?: string;
+  hour?: string;
+  min?: string;
+  mond?: string;
+  mon?: string;
+  wkd?: string;
+};
+
+const parsedText = ref<TparsedText>({
+  full: "",
   hour: "",
   min: "",
   mond: "",
@@ -29,18 +36,7 @@ const desc = ref<string>(
 
 const formatter = (text: string) => {
   let l = text.split(" ").filter((item) => item != "");
-  if (l.length == 5) {
-    datas.hour = l[0];
-    datas.min = l[1];
-    datas.mond = l[2];
-    datas.mon = l[3];
-    datas.wkd = l[4];
-    datas.start = '"';
-    datas.end = '."';
-  } else {
-    datas.start = '"';
-    datas.end = '."';
-  }
+  datas.textCount = l.length;
   return l.join(" ");
 };
 
@@ -58,35 +54,49 @@ const convert = (s) => {
   }
 };
 
-const minParser = (val: string) => {
-  if (val.indexOf("*") != 1) {
-    text.hour;
-  } else if (val.indexOf(",") != 1) {
-  } else if (val.indexOf("-") != 1) {
+const parser5 = () => {
+  let ele: HTMLElement = document.getElementById("crontext");
+  // console.log(ele.selectionStart);
+  let startindex = document.getElementById("crontext").selectionStart;
+  let text = crontext.value.substring(0, startindex);
+  // let textList = formatter(text).indexOf(" ") != -1 ? formatter(text).split(" ") : [];
+  let textList = formatter(text).split(" ");
+  console.log(textList);
+  switch (textList.length) {
+    case 1:
+      datas.toHighlight = "min";
+      break;
+    case 2:
+      datas.toHighlight = "hour";
+      break;
+    case 3:
+      datas.toHighlight = "mond";
+      break;
+    case 4:
+      datas.toHighlight = "mon";
+      break;
+    case 5:
+      datas.toHighlight = "wkd";
+      break;
+  }
+  highlight();
+};
+
+const highlight = () => {
+  for (var item of ["min", "hour", "mond", "mon", "wkd"]) {
+    if (item == datas.toHighlight) {
+      document.getElementById(item).style.color = "gray";
+    } else {
+      document.getElementById(item).style.color = "black";
+    }
   }
 };
 
-const hourParser = (val: string) => {
-  if (val.indexOf("*") != 1) {
-    text.hour;
-  } else if (val.indexOf(",") != 1) {
-  } else if (val.indexOf("-") != 1) {
-  }
+const strategies = {
+  5: parser5,
+  6: () => {},
+  7: () => {},
 };
-
-const textChange = () => {};
-
-watch(crontext, (newValue, oldValue) => {
-  formatter(newValue);
-
-  try {
-    datas.text = cronstrue.toString(crontext.value);
-    console.log(cronstrue.getFullDescription());
-    console.log(11);
-  } catch (e) {
-    console.log(e);
-  }
-});
 
 const change = (e) => {
   crontext.value = formatter(e.target.value);
@@ -104,16 +114,39 @@ const setStringFormat = () => {
   };
 };
 
-const click = (e) => {
-  console.log("focus");
-  console.log(e.target.value);
-  console.log(document.getElementById("crontext").selectionStart);
-  console.log(document.getElementById("crontext").selectionEnd);
+const cursorParsing = (e) => {
+  // console.log(e.target.value);
+  // format textCount
+  formatter(e.target.value);
+  strategies[datas.textCount]();
 };
+
+const getParsedText = () => {
+  parsedText.value = cronstrue.toDetails(crontext.value);
+  if (parsedText.value.full.substring(0, 7).indexOf(":") == -1) {
+    parsedText.value.min = parsedText.value.min.replace("at ", "");
+    parsedText.value.hour = ", " + parsedText.value.hour;
+  } else {
+    parsedText.value.min = parsedText.value.full.substring(3, 5);
+    parsedText.value.hour = ":" + parsedText.value.full.substring(6, 11);
+  }
+};
+
+watch(crontext, (newValue, oldValue) => {
+  formatter(newValue);
+  try {
+    getParsedText();
+    console.log(parsedText.value);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+const sshow = (e) => {};
 
 onMounted(() => {
   setStringFormat();
-  datas.text = cronstrue.toString(crontext.value);
+  getParsedText();
 });
 </script>
 
@@ -121,12 +154,12 @@ onMounted(() => {
   <div class="parser-text">
     <h1>
       {{ datas.start }}
-      <span id="text">{{ datas.text }}</span>
-      <span id="hour">{{ text.hour }}</span>
-      <span id="minute">{{ text.min }}</span>
-      <span id="month-day">{{ text.mond }}</span>
-      <span id="month">{{ text.mon }}</span>
-      <span id="week-day">{{ text.wkd }}</span>
+      <!-- <span id="text">{{ datas.full }}</span> -->
+      <span id="min">{{ parsedText.min }}</span>
+      <span id="hour">{{ parsedText.hour }}</span>
+      <span id="mond">{{ parsedText.mond }}</span>
+      <span id="mon">{{ parsedText.mon }}</span>
+      <span id="wkd">{{ parsedText.wkd }}</span>
       {{ datas.end }}
     </h1>
   </div>
@@ -136,7 +169,8 @@ onMounted(() => {
       v-model="crontext"
       placeholder="edit me"
       :onchange="change"
-      :onclick="click"
+      :onmouseup="cursorParsing"
+      :onkeyup="cursorParsing"
     />
   </div>
   <div class="desc">
@@ -169,5 +203,11 @@ onMounted(() => {
 <style scoped>
 .read-the-docs {
   color: #888;
+}
+#crontext {
+  height: 50px;
+  width: 80%;
+  font-size: 30px;
+  text-align: center;
 }
 </style>
