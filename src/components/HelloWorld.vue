@@ -8,24 +8,29 @@ const datas = reactive({
   full: "",
   textCount: 5,
   toHighlight: null,
+  datetime: null,
 });
 
 type TparsedText = {
   full?: string;
+  sec?: string;
   hour?: string;
   min?: string;
   mond?: string;
   mon?: string;
   wkd?: string;
+  AP?: string;
 };
 
 const parsedText = ref<TparsedText>({
   full: "",
+  sec: "",
   hour: "",
   min: "",
   mond: "",
   mon: "",
   wkd: "",
+  AP: "",
 });
 
 const crontext = ref<string>("3 9 * * *");
@@ -40,26 +45,15 @@ const formatter = (text: string) => {
   return l.join(" ");
 };
 
-const convert = (s) => {
-  var i = parseInt(s);
-  switch (20 < i ? i % 10 : i) {
-    case 1:
-      return s + "st";
-    case 2:
-      return s + "nd";
-    case 3:
-      return s + "rd";
-    default:
-      return s + "th";
-  }
+const change = (e) => {
+  crontext.value = formatter(e.target.value);
 };
 
+// cursorParsing
 const parser5 = () => {
   let ele: HTMLElement = document.getElementById("crontext");
-  // console.log(ele.selectionStart);
-  let startindex = document.getElementById("crontext").selectionStart;
+  let startindex = ele.selectionStart;
   let text = crontext.value.substring(0, startindex);
-  // let textList = formatter(text).indexOf(" ") != -1 ? formatter(text).split(" ") : [];
   let textList = formatter(text).split(" ");
   console.log(textList);
   switch (textList.length) {
@@ -84,10 +78,15 @@ const parser5 = () => {
 
 const highlight = () => {
   for (var item of ["min", "hour", "mond", "mon", "wkd"]) {
+    let eles = Array.from(document.getElementsByName(item));
     if (item == datas.toHighlight) {
-      document.getElementById(item).style.color = "gray";
+      eles.map((e) => {
+        e.style.color = "gray";
+      });
     } else {
-      document.getElementById(item).style.color = "black";
+      eles.map((e) => {
+        e.style.color = "black";
+      });
     }
   }
 };
@@ -98,37 +97,24 @@ const strategies = {
   7: () => {},
 };
 
-const change = (e) => {
-  crontext.value = formatter(e.target.value);
-};
-
-const setStringFormat = () => {
-  String.prototype["format"] = function () {
-    const e = arguments;
-    return (
-      !!this &&
-      this.replace(/\{(\d+)\}/g, function (t, r) {
-        return e[r] ? e[r] : t;
-      })
-    );
-  };
-};
-
 const cursorParsing = (e) => {
-  // console.log(e.target.value);
   // format textCount
   formatter(e.target.value);
   strategies[datas.textCount]();
 };
 
+// crontextParsing
 const getParsedText = () => {
   parsedText.value = cronstrue.toDetails(crontext.value);
   if (parsedText.value.full.substring(0, 7).indexOf(":") == -1) {
+    datas.datetime = false;
     parsedText.value.min = parsedText.value.min.replace("at ", "");
     parsedText.value.hour = ", " + parsedText.value.hour;
   } else {
-    parsedText.value.min = parsedText.value.full.substring(3, 5);
-    parsedText.value.hour = ":" + parsedText.value.full.substring(6, 11);
+    datas.datetime = true;
+    parsedText.value.hour = parsedText.value.full.substring(2, 5);
+    parsedText.value.min = parsedText.value.full.substring(6, 9);
+    parsedText.value.AP = parsedText.value.full.slice(-2);
   }
 };
 
@@ -142,24 +128,39 @@ watch(crontext, (newValue, oldValue) => {
   }
 });
 
-const sshow = (e) => {};
+const ptext = ref();
 
 onMounted(() => {
-  setStringFormat();
   getParsedText();
+  console.log(datas.datetime);
+  console.log(ptext);
 });
 </script>
 
 <template>
-  <div class="parser-text">
-    <h1>
+  <div class="parser-text" ref="ptext">
+    <h1 v-if="datas.datetime == true">
       {{ datas.start }}
       <!-- <span id="text">{{ datas.full }}</span> -->
-      <span id="min">{{ parsedText.min }}</span>
-      <span id="hour">{{ parsedText.hour }}</span>
-      <span id="mond">{{ parsedText.mond }}</span>
-      <span id="mon">{{ parsedText.mon }}</span>
-      <span id="wkd">{{ parsedText.wkd }}</span>
+      <span name="hour">{{ parsedText.hour }}</span>
+      <span>:</span>
+      <span name="min">{{ parsedText.min }}</span>
+      <span name="sec">{{ parsedText.sec }}</span>
+      <span name="hour">{{ parsedText.AP }}</span>
+      <span name="mond">{{ parsedText.mond }}</span>
+      <span name="mon">{{ parsedText.mon }}</span>
+      <span name="wkd">{{ parsedText.wkd }}</span>
+      {{ datas.end }}
+    </h1>
+    <h1 v-else>
+      {{ datas.start }}
+      <!-- <span name="text">{{ datas.full }}</span> -->
+      <span name="sec">{{ parsedText.sec }}</span>
+      <span name="min">{{ parsedText.min }}</span>
+      <span name="hour">{{ parsedText.hour }}</span>
+      <span name="mond">{{ parsedText.mond }}</span>
+      <span name="mon">{{ parsedText.mon }}</span>
+      <span name="wkd">{{ parsedText.wkd }}</span>
       {{ datas.end }}
     </h1>
   </div>
