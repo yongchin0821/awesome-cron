@@ -1,7 +1,8 @@
 {
   "name": "awesome-cron",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "cron parser. cron is awesome",
+  "author": "yongchin",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +11,7 @@
   },
   "dependencies": {
     "cron-converter": "^1.0.2",
-    "cronstrue": "^2.11.0",
+    "cronstrue": "file:../cRonstrue",
     "vue": "^3.2.37"
   },
   "devDependencies": {

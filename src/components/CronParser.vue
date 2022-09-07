@@ -52,7 +52,7 @@ const change = (e) => {
 
 // cursorParsing
 const parser5 = () => {
-  let ele: HTMLElement = document.getElementById("crontext");
+  let ele = document.getElementById("crontext") as HTMLInputElement;
   let startindex = ele.selectionStart;
   let text = crontext.value.substring(0, startindex);
   let textList = formatter(text).split(" ");
@@ -78,7 +78,7 @@ const parser5 = () => {
 };
 
 const parser6 = () => {
-  let ele: HTMLElement = document.getElementById("crontext");
+  let ele = document.getElementById("crontext") as HTMLInputElement;
   let startindex = ele.selectionStart;
   let text = crontext.value.substring(0, startindex);
   let textList = formatter(text).split(" ");
@@ -107,7 +107,7 @@ const parser6 = () => {
 };
 
 const parser7 = () => {
-  let ele: HTMLElement = document.getElementById("crontext");
+  let ele = document.getElementById("crontext") as HTMLInputElement;
   let startindex = ele.selectionStart;
   let text = crontext.value.substring(0, startindex);
   let textList = formatter(text).split(" ");
@@ -143,7 +143,7 @@ const highlight = () => {
     let eles = Array.from(document.getElementsByName(item));
     if (item == datas.cursor) {
       eles.map((e) => {
-        e.style.color = "gray";
+        e.style.color = "#ff3333";
       });
     } else {
       eles.map((e) => {
@@ -293,7 +293,7 @@ onMounted(() => {
       <span id="span-wkd"> week </span>
       <span id="span-year" v-show="datas.textCount == 7"> year </span>
     </p>
-    <textarea cols="40" rows="10">{{ desc }}</textarea>
+    <textarea cols="40" rows="10" readonly>{{ desc }}</textarea>
   </div>
 
   <p>
@@ -303,11 +303,9 @@ onMounted(() => {
     >, the official Vue + Vite starter
   </p>
   <p>
-    Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    in your IDE for a better DX
+    The Strongest cron parser. cron is awesome 
   </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <p class="read-the-docs">Powered by ririko</p>
 </template>
 
 <style scoped>
