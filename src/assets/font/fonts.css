@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'myfavfont';
+  /* 重命名字体名 */
+  src: url('Reey-Regular.otf');
+  /* font-weight: 900; */
+}

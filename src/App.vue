@@ -6,21 +6,22 @@ import Cron from "cron-converter";
 </script>
 
 <template>
-  <div>
-  </div>
+  <h1 class="title">awesome-cron</h1>
+  <p style="font-size:18px">Just a cron parser, cron is awesome</p>
   <CronParser />
+  <p>
+    Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
+  </p>
+  <p class="read-the-docs">Powered by ririko</p>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+@import "./assets/font/fonts.css";
+.title {
+  font-family: myfavfont;
+  font-size: 5em;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.read-the-docs {
+  color: #888;
 }
 </style>

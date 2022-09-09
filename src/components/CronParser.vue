@@ -295,32 +295,22 @@ onMounted(() => {
     </p>
     <textarea cols="40" rows="10" readonly>{{ desc }}</textarea>
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    The Strongest cron parser. cron is awesome 
-  </p>
-  <p class="read-the-docs">Powered by ririko</p>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
-}
 #crontext {
   height: 50px;
-  width: 80%;
-  font-size: 30px;
+  width: 90%;
+  font-size: 40px;
   text-align: center;
+  letter-spacing: 4px;
 }
 .desc textarea {
   font-size: large;
   resize: none;
   border: none;
+}
+.desc span{
+  padding-inline: 10px;
 }
 </style>
