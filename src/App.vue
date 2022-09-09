@@ -1,8 +1,10 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import CronParser from "./components/CronParser.vue";
+// import CronParser from "./components/CronParser.vue";
 import Cron from "cron-converter";
+import CronParser "../dist/index.umd.js";
+
 </script>
 
 <template>
