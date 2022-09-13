@@ -1,0 +1,23 @@
+{
+  "name": "awesome-cron",
+  "version": "0.0.2",
+  "description": "cron parser. cron is awesome",
+  "main": "index.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [
+    "cron",
+    "crontab",
+    "crontab-parser",
+    "cron-component"
+  ],
+  "author": "yongchin",
+  "license": "MIT",
+  "dependencies": {},
+  "typings": "lib/index.d.ts"
+}

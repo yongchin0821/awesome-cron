@@ -5,11 +5,11 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   plugins: [vue()],
   //umd build
-  optimizeDeps: { include: ["cronstrue"] },
+  optimizeDeps: { include: ["awesome-cron", "cronstrue"] },
   build: {
     commonjsOptions: {
       transformMixedEsModules: true,
-      include: [/cronstrue/, /node_modules/],
+      include: [/node_modules/, /awesome-cron/, /cronstrue/],
     },
   },
 });

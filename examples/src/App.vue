@@ -3,16 +3,16 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import CronParser from "./components/CronParser.vue";
 import Cron from "cron-converter";
-import CronParser "../dist/index.umd.js";
-
+import { CronParser } from "awesome-cron";
 </script>
 
 <template>
   <h1 class="title">awesome-cron</h1>
-  <p style="font-size:18px">Just a cron parser, cron is awesome</p>
+  <p style="font-size: 18px">Just a cron parser, cron is awesome</p>
   <CronParser />
   <p>
-    Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
+    Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron
+    expressions
   </p>
   <p class="read-the-docs">Powered by ririko</p>
 </template>
