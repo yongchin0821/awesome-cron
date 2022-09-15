@@ -1,6 +1,6 @@
 {
   "name": "awesome-cron",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "cron parser. cron is awesome",
   "main": "dist/lib/index.js",
   "scripts": {
@@ -16,6 +16,5 @@
   "license": "MIT",
   "typings": "lib/index.d.ts",
   "dependencies": {
-    "@awesome-cron/utils": "workspace:^0.0.1"
   }
 }
