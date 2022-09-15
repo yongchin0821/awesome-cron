@@ -10,7 +10,7 @@ export default defineConfig({
     //打包文件目录
     outDir: "es",
     //压缩
-    minify: false,
+    minify: true,
     //css分离
     //cssCodeSplit: true,
     rollupOptions: {
@@ -27,6 +27,8 @@ export default defineConfig({
           //配置打包根目录
           dir: resolve(__dirname, "./dist/es"),
           preserveModulesRoot: resolve(__dirname, "src"),
+          // dir: "es",
+          // preserveModulesRoot: "src",
         },
         {
           format: "cjs",
@@ -36,13 +38,15 @@ export default defineConfig({
           //配置打包根目录
           dir: resolve(__dirname, "./dist/lib"),
           preserveModulesRoot: resolve(__dirname, "src"),
+          // dir: "lib",
+          // preserveModulesRoot: "src",
         },
       ],
     },
     lib: {
       entry: "./index.ts",
       name: "awesome-cron",
-      formats: ["es", "cjs"],
+      // formats: ["es"],
     },
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -53,7 +57,6 @@ export default defineConfig({
     vue(),
     //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
     dts({
-      entryRoot: "src",
       outputDir: [
         resolve(__dirname, "./dist/es/src"),
         resolve(__dirname, "./dist/lib/src"),
@@ -62,4 +65,9 @@ export default defineConfig({
       tsConfigFilePath: "../../tsconfig.json",
     }),
   ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
+  },
 });

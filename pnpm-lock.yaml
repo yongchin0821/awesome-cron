@@ -6,21 +6,17 @@ importers:
     specifiers:
       '@types/node': ^18.7.14
       '@vitejs/plugin-vue': ^3.0.3
-      awesome-cron: workspace:^0.0.2
       cron-converter: ^1.0.2
-      cronstrue: link:/Users/yangqing/Workspace/DEV/study/cRonstrue
       typescript: ^4.6.4
       vite: ^3.0.7
       vite-plugin-dts: ^1.4.1
       vue: ^3.2.37
       vue-tsc: ^0.39.5
     dependencies:
-      awesome-cron: link:../packages/components
       cron-converter: 1.0.2
-      cronstrue: link:../../cRonstrue
       vue: 3.2.39
     devDependencies:
-      '@types/node': 18.7.16
+      '@types/node': 18.7.18
       '@vitejs/plugin-vue': 3.1.0_vite@3.1.0+vue@3.2.39
       typescript: 4.8.3
       vite: 3.1.0
@@ -167,8 +163,8 @@ packages:
     resolution: {integrity: sha512-yxDeaQIAJlMav7fH5AQqPH1u8YIuhYJXYBzxaQ4PifsU0GDO38MSdmEDeRlIxrKbC6NbEaaEHDanWb+y30U8SQ==}
     dev: true
 
-  /@types/node/18.7.16:
-    resolution: {integrity: sha512-EQHhixfu+mkqHMZl1R2Ovuvn47PUw18azMJOTwSZr9/fhzHNGXAJ0ma0dayRVchprpCj0Kc1K1xKoWaATWF1qg==}
+  /@types/node/18.7.18:
+    resolution: {integrity: sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==}
     dev: true
 
   /@vitejs/plugin-vue/3.1.0_vite@3.1.0+vue@3.2.39:
@@ -376,7 +372,7 @@ packages:
     resolution: {integrity: sha512-umy/YVmlwsPOkLya3ggxraxjVCt2jaNRyRu7Q532qqMZ4VW35UUU9AU4tQwExchsU5i/bYCNKwl5M0sWhQTXjw==}
     dependencies:
       moment-timezone: 0.5.37
-      sprintf-js: 1.1.2
+      sprintf-js: 1.0.3
     dev: false
 
   /csstype/2.6.20:
@@ -905,11 +901,6 @@ packages:
 
   /sprintf-js/1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
-    dev: true
-
-  /sprintf-js/1.1.2:
-    resolution: {integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==}
-    dev: false
 
   /string-argv/0.3.1:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}

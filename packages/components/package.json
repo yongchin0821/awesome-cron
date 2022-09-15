@@ -1,15 +1,14 @@
 {
   "name": "awesome-cron",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "cron parser. cron is awesome",
-  "main": "dist/lib/index.d.ts",
-  "module": "dist/es/index.d.ts",
+  "main": "index.ts",
   "scripts": {
     "build": "vite build"
   },
   "files": [
-    "dist/es",
-    "dist/lib"
+    "es",
+    "lib"
   ],
   "keywords": [
     "cron",

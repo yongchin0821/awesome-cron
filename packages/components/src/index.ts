@@ -1,3 +1,1 @@
-import { CronParser } from "./CronParser";
-
-export { CronParser };
+export { default as CronParser } from './cronParser'
