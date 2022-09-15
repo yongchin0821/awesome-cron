@@ -4,7 +4,7 @@ import dts from "vite-plugin-dts";
 import { resolve } from "path";
 
 export default defineConfig({
-  optimizeDeps: { include: ["cronstrue"] },
+  // optimizeDeps: { include: ["cronstrue"] },
   build: {
     target: "modules",
     //打包文件目录
@@ -15,7 +15,7 @@ export default defineConfig({
     //cssCodeSplit: true,
     rollupOptions: {
       //忽略打包vue文件
-      external: ["vue"],
+      external: ["vue","@awesome-cron/utils"],
       input: ["index.ts"],
       output: [
         {
@@ -27,8 +27,6 @@ export default defineConfig({
           //配置打包根目录
           dir: resolve(__dirname, "./dist/es"),
           preserveModulesRoot: resolve(__dirname, "src"),
-          // dir: "es",
-          // preserveModulesRoot: "src",
         },
         {
           format: "cjs",
@@ -38,8 +36,6 @@ export default defineConfig({
           //配置打包根目录
           dir: resolve(__dirname, "./dist/lib"),
           preserveModulesRoot: resolve(__dirname, "src"),
-          // dir: "lib",
-          // preserveModulesRoot: "src",
         },
       ],
     },
@@ -48,15 +44,16 @@ export default defineConfig({
       name: "awesome-cron",
       // formats: ["es"],
     },
-    commonjsOptions: {
-      transformMixedEsModules: true,
-      include: [/node_modules/, /cronstrue/],
-    },
+    // commonjsOptions: {
+    //   transformMixedEsModules: true,
+    //   include: [/cronstrue/],
+    // },
   },
   plugins: [
     vue(),
     //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
     dts({
+      entryRoot: 'src',
       outputDir: [
         resolve(__dirname, "./dist/es/src"),
         resolve(__dirname, "./dist/lib/src"),

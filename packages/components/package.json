@@ -1,15 +1,11 @@
 {
   "name": "awesome-cron",
-  "version": "0.0.5",
+  "version": "0.0.9",
   "description": "cron parser. cron is awesome",
-  "main": "index.ts",
+  "main": "dist/lib/index.js",
   "scripts": {
     "build": "vite build"
   },
-  "files": [
-    "es",
-    "lib"
-  ],
   "keywords": [
     "cron",
     "crontab",
@@ -18,6 +14,8 @@
   ],
   "author": "yongchin",
   "license": "MIT",
-  "dependencies": {},
-  "typings": "lib/index.d.ts"
+  "typings": "lib/index.d.ts",
+  "dependencies": {
+    "@awesome-cron/utils": "workspace:^0.0.1"
+  }
 }

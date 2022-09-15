@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ref, watch, reactive, onMounted, defineComponent } from "vue";
-import cronstrue from "cronstrue";
+import cronstrue from "@awesome-cron/utils";
 
 export default defineComponent({
   name: "cronParser",

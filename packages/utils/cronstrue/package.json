@@ -1,0 +1,16 @@
+{
+  "name": "@awesome-cron/utils",
+  "version": "0.0.1",
+  "main": "cronstrue.ts",
+  "module": "cronstrue.ts",
+  "description": "",
+  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "build": "vite build"
+  }
+}
