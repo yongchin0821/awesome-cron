@@ -4,8 +4,8 @@
 // import CronParser from "./components/CronParser.vue";
 // import Cron from "cron-converter";
 import CronParser from "awesome-cron/src/cronParser";
+// import CronParser from "awesome-cron/src/cronParser";
 // import cronParser from "awesome-cron/src/cronParser/cronParser.vue";
-// console.log(CronParser);
 </script>
 
 <template>
@@ -18,7 +18,6 @@ import CronParser from "awesome-cron/src/cronParser";
     expressions
   </p>
   <p class="read-the-docs">Powered by ririko</p>
-  <k-button>fdsfds</k-button>
 </template>
 
 <style scoped>
