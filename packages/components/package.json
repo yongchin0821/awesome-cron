@@ -15,6 +15,12 @@
   "author": "yongchin",
   "license": "MIT",
   "typings": "lib/index.d.ts",
+  "homepage": "https://yongchin0821.github.io/awesome-cron/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yongchin0821/awesome-cron"
+  },
+  "bugs": "https://github.com/yongchin0821/awesome-cron/issues",
   "dependencies": {
   }
 }
