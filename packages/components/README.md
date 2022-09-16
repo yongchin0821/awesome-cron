@@ -14,16 +14,17 @@ npm install awesome-cron
 
 ```js
 import { createApp } from "vue";
-import naive from "naive-ui";
+import cron from "awesome-cron";
 
 const app = createApp(App);
-app.use(naive);
+app.use(cron);
+app.mount("#app");
 ```
 
 After the installation, you can use all the components in your SFC like this.
 Both `<cron-parser>` and `<cronParser>` are available
 
-```js
+```html
 <template>
   <cron-parser></cron-parser>
 </template>
@@ -31,7 +32,7 @@ Both `<cron-parser>` and `<cronParser>` are available
 
 or
 
-```js
+```html
 <template>
   <cronParser></cronParser>
 </template>
@@ -41,9 +42,9 @@ or
 
 #### Import Directly
 
-```js
+```html
 <script>
-  import { defineComponent } from 'vue'
+  import { defineComponent } from "vue";
   import CronParser from "awesome-cron/src/cronParser";
 
   export default defineComponent({
@@ -51,16 +52,14 @@ or
       CronParser,
     },
     setup() {
-      return {}
-    }
-  })
+      return {};
+    },
+  });
 </script>
 
 <template>
   <CronParser></CronParser>
 </template>
 
-<style>
-
-</style>
+<style></style>
 ```

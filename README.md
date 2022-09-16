@@ -4,7 +4,7 @@ awesome-cron is a cron parser as the Vue 3 component library.
 
 To know how to install it, see [Installation](./packages/components//README.md).
 
-It is page interaction friendly, Easy to use.
+It is Page Interaction Friendly, Easy To Use.
 
 ## Features
 
@@ -15,5 +15,5 @@ It is page interaction friendly, Easy to use.
 - i18n support with 29 languages
 
 ## Thanks
-Page UI inspire by crontab.guru
+Page UI inspire by crontab.guru  
 Algorithm inspire by [cRonstrue](https://github.com/yongchin0821/cRonstrue)
