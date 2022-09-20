@@ -45,7 +45,7 @@ or
 ```html
 <script>
   import { defineComponent } from "vue";
-  import CronParser from "awesome-cron/src/cronParser";
+  import { CronParser } from "awesome-cron";
 
   export default defineComponent({
     components: {
