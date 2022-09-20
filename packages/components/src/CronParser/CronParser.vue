@@ -257,62 +257,73 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="parser-text" ref="ptext">
-    <h1 v-if="datas.datetime == true">
-      {{ datas.start }}
-      <!-- <span id="text">{{ datas.full }}</span> -->
-      <span name="hour">{{ parsedText.hour }}</span>
-      <span>:</span>
-      <span name="min">{{ parsedText.min }}</span>
-      <span v-if="parsedText.sec != null">:</span>
-      <span name="sec">{{ parsedText.sec }}</span>
-      <span name="hour">{{ parsedText.AP }}</span>
-      <span name="mond">{{ parsedText.mond }}</span>
-      <span name="mon">{{ parsedText.mon }}</span>
-      <span name="wkd">{{ parsedText.wkd }}</span>
-      <span name="year">{{ parsedText.year }}</span>
-      {{ datas.end }}
-    </h1>
-    <h1 v-else>
-      {{ datas.start }}
-      <!-- <span name="text">{{ datas.full }}</span> -->
-      <span name="sec">{{ parsedText.sec }}</span>
-      <span name="min">{{ parsedText.min }}</span>
-      <span name="hour">{{ parsedText.hour }}</span>
-      <span name="mond">{{ parsedText.mond }}</span>
-      <span name="mon">{{ parsedText.mon }}</span>
-      <span name="wkd">{{ parsedText.wkd }}</span>
-      <span name="year">{{ parsedText.year }}</span>
-      {{ datas.end }}
-    </h1>
-  </div>
-  <div class="cron">
-    <input
-      id="crontext"
-      v-model="crontext"
-      placeholder="edit me"
-      :onchange="change"
-      :onmouseup="cursorParsing"
-      :onkeyup="cursorParsing"
-    />
-  </div>
-  <div class="desc">
-    <p>
-      <span id="span-sec" v-show="datas.textCount == 6 || datas.textCount == 7">
-        second
-      </span>
-      <span id="span-min"> minute </span>
-      <span id="span-hour"> hour</span>
-      <span id="span-mond"> day </span>
-      <span id="span-mon"> month </span>
-      <span id="span-wkd"> week </span>
-      <span id="span-year" v-show="datas.textCount == 7"> year </span>
-    </p>
-    <textarea cols="40" rows="10" readonly>{{ desc }}</textarea>
+  <div class="cron-parser">
+    <div class="parser-text" ref="ptext">
+      <h1 v-if="datas.datetime == true">
+        {{ datas.start }}
+        <!-- <span id="text">{{ datas.full }}</span> -->
+        <span name="hour">{{ parsedText.hour }}</span>
+        <span>:</span>
+        <span name="min">{{ parsedText.min }}</span>
+        <span v-if="parsedText.sec != null">:</span>
+        <span name="sec">{{ parsedText.sec }}</span>
+        <span name="hour">{{ parsedText.AP }}</span>
+        <span name="mond">{{ parsedText.mond }}</span>
+        <span name="mon">{{ parsedText.mon }}</span>
+        <span name="wkd">{{ parsedText.wkd }}</span>
+        <span name="year">{{ parsedText.year }}</span>
+        {{ datas.end }}
+      </h1>
+      <h1 v-else>
+        {{ datas.start }}
+        <!-- <span name="text">{{ datas.full }}</span> -->
+        <span name="sec">{{ parsedText.sec }}</span>
+        <span name="min">{{ parsedText.min }}</span>
+        <span name="hour">{{ parsedText.hour }}</span>
+        <span name="mond">{{ parsedText.mond }}</span>
+        <span name="mon">{{ parsedText.mon }}</span>
+        <span name="wkd">{{ parsedText.wkd }}</span>
+        <span name="year">{{ parsedText.year }}</span>
+        {{ datas.end }}
+      </h1>
+    </div>
+    <div class="cron">
+      <input
+        id="crontext"
+        v-model="crontext"
+        placeholder="edit me"
+        :onchange="change"
+        :onmouseup="cursorParsing"
+        :onkeyup="cursorParsing"
+      />
+    </div>
+    <div class="desc">
+      <p>
+        <span
+          id="span-sec"
+          v-show="datas.textCount == 6 || datas.textCount == 7"
+        >
+          second
+        </span>
+        <span id="span-min"> minute </span>
+        <span id="span-hour"> hour</span>
+        <span id="span-mond"> day </span>
+        <span id="span-mon"> month </span>
+        <span id="span-wkd"> week </span>
+        <span id="span-year" v-show="datas.textCount == 7"> year </span>
+      </p>
+      <textarea cols="40" rows="10" readonly>{{ desc }}</textarea>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style>
+@import "./style.css";
+
+.cron-parser {
+  text-align: center;
+}
+
 #crontext {
   height: 50px;
   width: 90%;

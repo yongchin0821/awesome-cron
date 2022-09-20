@@ -1,8 +1,19 @@
 {
   "name": "awesome-cron",
-  "version": "0.0.10",
+  "version": "0.0.12",
+  "type": "module",
   "description": "cron parser. cron is awesome",
-  "main": "dist/lib/index.js",
+  "main": "dist/awesome-cron.umd.cjs",
+  "module": "dist/awesome-cron.js",
+  "exports": {
+    ".": {
+      "import": "./dist/awesome-cron.js",
+      "require": "./dist/awesome-cron.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build"
   },
@@ -21,6 +32,5 @@
     "url": "https://github.com/yongchin0821/awesome-cron"
   },
   "bugs": "https://github.com/yongchin0821/awesome-cron/issues",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

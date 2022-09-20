@@ -1,0 +1,19 @@
+.cron-parser {
+  text-align: center;
+}
+
+#crontext {
+  height: 50px;
+  width: 90%;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.desc textarea {
+  font-size: large;
+  resize: none;
+  border: none;
+}
+.desc span {
+  padding-inline: 10px;
+}
