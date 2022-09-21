@@ -3,9 +3,10 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import CronParser from "./components/CronParser.vue";
 // import Cron from "cron-converter";
-import CronParser from "awesome-cron/src/cronParser";
 // import CronParser from "awesome-cron/src/cronParser";
+import { CronParser } from "awesome-cron";
 // import cronParser from "awesome-cron/src/cronParser/cronParser.vue";
+
 </script>
 
 <template>

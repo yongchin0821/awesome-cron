@@ -11,7 +11,7 @@ export default defineComponent({
       full: "",
       textCount: 5,
       cursor: "",
-      datetime: null,
+      datetime: false,
     });
 
     type TparsedText = {
@@ -218,11 +218,19 @@ export default defineComponent({
         datas.datetime = false;
         parsedText.value.min = parsedText.value.min.replace("at ", "");
         parsedText.value.hour = ", " + parsedText.value.hour;
+        if (parsedText.value.sec != "") {
+          parsedText.value.sec = parsedText.value.sec.replace("at ", "");
+          parsedText.value.min = ", " + parsedText.value.min;
+        }
       } else {
         datas.datetime = true;
-        parsedText.value.hour = parsedText.value.full.substring(2, 5);
-        parsedText.value.min = parsedText.value.full.substring(6, 8);
-        parsedText.value.AP = parsedText.value.full.split(",")[0].slice(-3);
+        try {
+          parsedText.value.hour = parsedText.value.full.substring(3, 5);
+          parsedText.value.min = parsedText.value.full.substring(6, 8);
+          parsedText.value.AP = parsedText.value.full.split(",")[0].slice(-3);
+        } catch (e) {
+          console.log(e);
+        }
       }
     };
 

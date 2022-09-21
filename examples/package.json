@@ -18,7 +18,7 @@
     "cbuild": "node ./scripts/cbuild.js"
   },
   "dependencies": {
-    "awesome-cron": "workspace:^0.0.12",
+    "awesome-cron": "workspace:^0.0.16",
     "cron-converter": "^1.0.2",
     "kitty-ui": "^3.0.11"
   }
