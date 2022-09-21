@@ -37,23 +37,24 @@ export default defineConfig({
     //       dir: resolve(__dirname, "./dist/lib"),
     //       preserveModulesRoot: resolve(__dirname, "src"),
     //     },
-        
+
     //   ],
     // },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ['vue'],
+      external: ["vue"],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-          vue: 'Vue'
-        }
-      }
+          vue: "Vue",
+        },
+      },
     },
     lib: {
       entry: "./index.ts",
       name: "awesome-cron",
-      // formats: ["es"],
+      // formats: ["es", "cjs"],
+      fileName: "index",
     },
     // commonjsOptions: {
     //   transformMixedEsModules: true,
@@ -64,11 +65,11 @@ export default defineConfig({
     vue(),
     //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
     dts({
-      entryRoot: 'src',
+      entryRoot: "src",
       outputDir: [
         // resolve(__dirname, "./dist/es/src"),
         // resolve(__dirname, "./dist/lib/src"),
-        resolve(__dirname, "./dist/src"),
+        resolve(__dirname, "./dist"),
       ],
       //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
       tsConfigFilePath: "../../tsconfig.json",
