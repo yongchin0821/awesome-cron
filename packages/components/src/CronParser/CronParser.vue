@@ -1,10 +1,17 @@
 <script lang="ts">
 import { ref, watch, reactive, onMounted, defineComponent } from "vue";
-import cronstrue from "../utils/cronstrue";
+// import cronstrue from "../utils/cronstrue";
+import cronstrue from "../utils/cronstrue/cronstrue-i18n";
 
 export default defineComponent({
   name: "cronParser",
-  setup() {
+  props: {
+    language: {
+      type: String,
+      default: "en",
+    },
+  },
+  setup(props, ctx) {
     const datas = reactive({
       start: '"At ',
       end: '."',
@@ -212,7 +219,9 @@ export default defineComponent({
 
     // crontextParsing
     const getParsedText = () => {
-      parsedText.value = cronstrue.toDetails(crontext.value);
+      parsedText.value = cronstrue.toDetails(crontext.value, {
+        locale: props.language,
+      });
       console.log(parsedText.value);
       if (parsedText.value.full.substring(0, 7).indexOf(":") == -1) {
         datas.datetime = false;

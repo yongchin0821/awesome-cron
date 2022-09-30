@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "rm -rf ./dist && vite build"
   },
   "keywords": [
     "cron",
